@@ -1,0 +1,372 @@
+/* --- Сброс и базовые настройки --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    scroll-behavior: smooth;
+    background-image: url(background.jpg);
+    font-family: 'Montserrat', sans-serif;
+    color: #4a4a4a;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden; 
+    width: 100%;
+
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* --- Контейнер страницы --- */
+.main-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+}
+
+/* --- Стилизация "Ленты" (Единый блок) --- */
+.mobile-screen {
+    background-color: #fff;
+    width: 100%;
+    max-width: 360px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,255,0.5);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- АДАПТИВНОСТЬ ДЛЯ ПК --- */
+@media (min-width: 800px) {
+    .mobile-screen {
+        max-width: 800px;
+    }
+    /* Было 3.5rem -> Стало ~4.0rem */
+    h1.names { font-size: 4rem; }
+    /* Было 2.2rem -> Стало ~2.5rem */
+    .section-title { font-size: 2.5rem; }
+}
+
+/* --- АНИМАЦИИ --- */
+.anim-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.anim-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Внутренние стили блоков --- */
+.block {
+    padding: 40px 25px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.block:last-child {
+    border-bottom: none;
+}
+
+/* --- ТИПОГРАФИКА (Увеличено в 1.15 раза) --- */
+h1.names {
+    font-family: 'Cormorant Garamond', serif;
+    /* Было 3rem -> Стало 3.45rem */
+    font-size: 3.45rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.1;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.amp {
+    font-style: italic;
+    /* Было 2.5rem -> Стало ~2.9rem */
+    font-size: 2.9rem;
+    display: block;
+    margin: 5px 0;
+    color: #d4c5b0;
+}
+
+.date {
+    text-align: center;
+    /* Было 0.9rem -> Стало ~1.05rem */
+    font-size: 1.05rem;
+    letter-spacing: 2px;
+    color: #888;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    /* Было 2rem -> Стало 2.3rem */
+    font-size: 2.3rem;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 20px;
+    color: #333;
+    line-height: 1.2;
+}
+.section-title.center { text-align: center; }
+
+.body-text {
+    /* Было 0.9rem -> Стало ~1.05rem */
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+.body-text.small {
+    /* Было 0.85rem -> Стало ~1rem */
+    font-size: 1rem;
+    text-align: center;
+}
+
+.quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    /* Было 1.2rem -> Стало ~1.4rem */
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-align: center;
+    color: #666;
+    margin: 20px 0;
+    line-height: 1.4;
+}
+
+.subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    /* Было 1.2rem -> Стало ~1.4rem */
+    font-size: 1.4rem;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+.address-text {
+    /* Было 0.95rem -> Стало ~1.1rem */
+    font-size: 1.1rem;
+    text-align: center;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+/* --- Кнопки --- */
+button {
+    display: block;
+    width: 100%;
+    padding: 14px 0;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    /* Было 0.8rem -> Стало ~0.9rem */
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.btn-gold {
+    background-color: transparent;
+    border: 2px solid #d4c5b0;
+    color: #333;
+}
+.btn-gold:hover { background-color: #d4c5b0; color: #fff; }
+.btn-outline {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    color: #555;
+}
+.btn-outline:hover { 
+    background-color: #d4c5b0; }
+
+/* --- ИЗОБРАЖЕНИЯ --- */
+.full-width-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px 0;
+    border-radius: 8px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.outfit-grid {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* --- Тайминг --- */
+.timeline-list { list-style: none; padding: 0; }
+.timeline-list li {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed #ddd;
+    padding: 12px 0;
+    /* Было 0.95rem -> Стало ~1.1rem */
+    font-size: 1.1rem;
+    align-items: flex-start;
+}
+.timeline-list li:last-child { border-bottom: none; }
+.time { 
+    font-weight: 600; 
+    color: #333; 
+    min-width: 70px;
+    display: inline-block;
+}
+.event { 
+    color: #666; 
+    text-align: right; 
+    flex: 1;
+}
+
+/* --- СТИЛИЗАЦИЯ ФОРМЫ --- */
+.wedding-form {
+    margin-top: 25px;
+    text-align: left;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label {
+    display: block;
+    /* Было 0.85rem -> Стало ~1rem */
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 8px;
+    font-weight: 500;
+    padding-left: 5px;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 14px 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 25px;
+    font-family: 'Montserrat', sans-serif;
+    /* Было 0.95rem -> Стало ~1.1rem */
+    font-size: 1.1rem;
+    background: #fafafa;
+    transition: all 0.3s ease;
+    color: #333;
+}
+
+/* ИЗМЕНЕНИЕ: Запрет на изменение размера textarea */
+.form-group textarea {
+    border-radius: 20px;
+    resize: none; /* Пользователь не может менять размер */
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: #d4c5b0;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(212, 197, 176, 0.25);
+}
+
+.select-wrapper {
+    position: relative;
+}
+.select-wrapper::after {
+    content: '▼';
+    font-size: 0.8rem;
+    color: #999;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+.form-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+/* --- ФУТЕР --- */
+.site-footer-custom {
+    background-color: #fff;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 20px auto;
+    border-radius: 20px;
+    padding: 40px 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.02); 
+    text-align: center;
+}
+
+.footer-content-center {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 20px;
+}
+
+.couple-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 150px;
+}
+
+.couple-contact h3 {
+    font-family: 'Cormorant Garamond', serif;
+    /* Было 1.8rem -> Стало ~2.1rem */
+    font-size: 2.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.btn-vk {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #d4c5b0;
+    color: white;
+    padding: 8px 24px;
+    border-radius: 20px;
+    /* Было 0.8rem -> Стало ~0.9rem */
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    transition: background 0.3s;
+}
+.btn-vk:hover {
+    background-color: #978b77;
+}
+
+.footer-phone {
+    /* Было 0.95rem -> Стало ~1.1rem */
+    font-size: 1.1rem;
+    color: #555;
+    font-weight: 500;
+}
+
+@media (max-width: 480px) {
+    .footer-content-center {
+        flex-direction: column;
+        gap: 30px;
+    }
+}
+
+.mobile-screen {
+    position: relative; 
+}

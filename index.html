@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Никита & Оля</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
+</head>
+<body>
+
+<!--===========================================================-->
+<!-- Скрипт для падающих сердечек -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Создаем контейнер для сердечек
+        const heartsContainer = document.createElement('div');
+        heartsContainer.id = 'hearts-container';
+        // Стили контейнера: на весь экран, поверх всего, но пропускает клики
+        Object.assign(heartsContainer.style, {
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            width: '100%',
+            height: '100%',
+            pointerEvents: 'none', // Важно! Чтобы можно было кликать сквозь сердечки
+            zIndex: '9999', // Поверх всего
+            overflow: 'hidden'
+        });
+        document.body.appendChild(heartsContainer);
+
+        // Функция создания одного сердечка
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '💙';
+            
+            // Случайные параметры
+            const startLeft = Math.random() * 100; // Позиция по горизонтали (0-100%)
+            const duration = Math.random() * 3 + 3; // Время падения от 3 до 6 секунд
+            const size = Math.random() * 20 + 10; // Размер от 10px до 30px
+            const opacity = Math.random() * 0.5 + 0.1; // Прозрачность от 0.1 до 0.6
+
+            // Применяем стили к сердечку
+            Object.assign(heart.style, {
+                position: 'absolute',
+                top: '-50px',
+                left: startLeft + '%',
+                fontSize: size + 'px',
+                color: '#3E5F8A', // Цвет сердечек (под золото из твоего дизайна)
+                opacity: opacity,
+                animation: `fall ${duration}s linear forwards`
+            });
+
+            heartsContainer.appendChild(heart);
+
+            // Удаляем сердечко после окончания анимации, чтобы не засорять память
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        // Добавляем стиль анимации в документ
+        const styleSheet = document.createElement("style");
+        styleSheet.innerText = `
+            @keyframes fall {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 0.8;
+                }
+                100% {
+                    transform: translateY(110vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+
+        // Запускаем генерацию сердечек каждые 300мс
+        setInterval(createHeart, 600);
+    });
+</script>
+<!--===========================================================-->
+
+<!-- Единый контейнер-лента -->
+<div class="main-wrapper">
+    <div class="mobile-screen">
+
+        <!-- === БЛОК 1: ПРИГЛАШЕНИЕ === -->
+        <div class="block hero-block anim-item">
+            <h1 class="names">Никита<br><span class="amp">&</span>Оля</h1>
+            <p class="date">18.07.2026</p>
+            <img src="headerphoto.jpg" alt="Никита и Оля" class="full-width-img">
+            
+            <p class="quote-text">❝Любовь — это единственное чудо, которое имеет значение❞</p>
+            <button class="btn-gold" onclick="document.querySelector('.rsvp-block').scrollIntoView({behavior: 'smooth'})">Я приду!</button>
+        </div>
+
+        <!-- === БЛОК 2: ТЕКСТ ПРИГЛАШЕНИЯ === -->
+        <div class="block text-block anim-item">
+            <h2 class="section-title">Дорогие<br>родные и друзья!</h2>
+            <p class="body-text">Мы счастливы сообщить вам, что скоро станем семьей! Этот день будет особенным только благодаря вашему присутствию. Приглашаем вас разделить с нами радость создания нашей семьи.</p>
+            <img src="secondphoto.jpg" alt="Детали свадьбы" class="full-width-img">
+        </div>
+
+        <!-- === БЛОК 3: ТАЙМИНГ === -->
+        <div class="block timeline-block anim-item">
+            <h2 class="section-title">Программа дня</h2>
+            <ul class="timeline-list">
+                <li>
+                    <span class="time">16:30</span>
+                    <span class="event">Фуршет</span>
+                </li>
+                <li>
+                    <span class="time">17:00</span>
+                    <span class="event">Выездная регистрация</span>
+                </li>
+                <li>
+                    <span class="time">18:00</span>
+                    <span class="event">Праздничный банкет</span>
+                </li>
+                <li>
+                    <span class="time">00:00</span>
+                    <span class="event">Завершение торжества</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- === БЛОК 4: ЛОКАЦИЯ === -->
+        <div class="block location-block anim-item">
+            <h2 class="section-title center">Место проведения</h2>
+            <img src="zvezda.png" alt="Банкетный зал Звезда" class="full-width-img">
+            
+            <p class="address-text">
+                <strong>Банкетный зал "Звезда"</strong><br>
+                г. Тюмень, ул. Народная 62/1
+            </p>
+            <button class="btn-outline"><a href="https://2gis.ru/tyumen/firm/1830115629657532">Показать на карте</a></button>
+        </div>
+
+        <!-- === БЛОК 5: ДРЕСС-КОД === -->
+        <div class="block dresscode-block anim-item">
+            <h2 class="section-title center">Дресс-код</h2>
+            <p class="body-text small">Будем рады, если вы поддержите цветовую гамму нашей свадьбы в своих нарядах.</p>
+            <div class="outfit-grid">
+                <img src="palitra.png" alt="Палитра" class="full-width-img">
+            </div>
+        </div>
+
+        <!-- === БЛОК 6: ПОДАРКИ === -->
+        <div class="block gifts-block anim-item">
+            <h2 class="section-title center">Подарки</h2>
+            <img src="converts.jpg" alt="Подарки" class="full-width-img">
+            
+            <p class="body-text small">«Самое важное для нас — ваше присутствие и тепло ваших сердец.
+                Мы только начинаем наш совместный путь, поэтому самым желанным подарком для нас станет вклад в наш семейный бюджет.</p>
+            <p class="body-text small">Мы очень любим цветы, но предпочитаем видеть их живыми, поэтому если вы планировали купить букет, мы будем вдвойне благодарны, 
+                если эта сумма присоединится к вашему основному поздравлению, так вы поможете нам осуществить мечту, которая будет радовать нас гораздо дольше, чем срезанные растения.»</p>
+        </div>
+
+        <!-- === БЛОК 7: АНКЕТА === -->
+        <div class="block rsvp-block anim-item">
+            <h2 class="section-title center">Анкета гостя</h2>
+            <p class="body-text small">Пожалуйста, заполните форму ниже, чтобы мы могли подготовиться к вашему визиту.</p>
+            <p class="body-text small">Просим отправить анкету до 15 июня 2026</p>
+            
+            <form class="wedding-form">
+                <div class="form-group">
+                    <label for="name">ФИО (Фамилия Имя Отчество)</label>
+                    <input type="text" id="name" name="name" placeholder="Иванов Иван Иванович" required>
+                    <small id="name-error" style="color: red; display: none; margin-top: 5px; font-size: 0.75rem;">Пожалуйста, введите Фамилию, Имя и Отчество полностью (три слова).</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Номер телефона</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___ __-__" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="attendance">Планируете ли вы быть?</label>
+                    <div class="select-wrapper">
+                        <select id="attendance" name="attendance" required>
+                            <option value="" disabled selected>Выберите вариант</option>
+                            <option value="yes">Да, с удовольствием приду!</option>
+                            <option value="no">К сожалению, не смогу</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="comment">Комментарий</label>
+                    <textarea id="comment" name="comment" rows="3" placeholder="Укажите, если хотите творческое поздравление"></textarea>
+                </div>
+                
+                <button type="submit" class="btn-gold">Отправить ответ</button>
+            </form>
+        </div>
+
+        <!-- === БЛОК 8: ФИНАЛ === -->
+        <div class="block final-block anim-item">
+            <h2 class="section-title center love-title">До встречи<br>на свадьбе!</h2>
+            <img src="endofsite.jpg" alt="Финал" class="full-width-img">
+        </div>
+
+    </div>
+</div>
+
+<!-- Футер с контактами -->
+<footer class="site-footer-custom">
+    <p class="subtitle center">С любовью,</p>
+    <div class="footer-content-center">
+        <div class="couple-contact">
+            <h3>Никита</h3>
+            <a href="https://vk.com/evstigneev086" target="_blank" class="btn-vk">VK</a>
+            <p class="footer-phone">+7 (996) 686-04-74</p>
+        </div>
+        
+        <div class="couple-contact">
+            <h3>Оля</h3>
+            <a href="https://vk.com/id330493969" target="_blank" class="btn-vk">VK</a>
+            <p class="footer-phone">+7 (922) 482-50-74</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // === 1. Анимация появления блоков ===
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const animatedItems = document.querySelectorAll('.anim-item');
+        animatedItems.forEach(item => {
+            observer.observe(item);
+        });
+
+        // === 2. МАСКА ДЛЯ ТЕЛЕФОНА (+7 (999) 999 99-99) ===
+        const phoneInput = document.getElementById('phone');
+
+        const onPhoneInput = function (e) {
+            let input = e.target,
+                inputNumbersValue = input.value.replace(/\D/g, ''),
+                selectionStart = input.selectionStart,
+                formattedInputValue = "";
+
+            if (!inputNumbersValue) {
+                return input.value = "";
+            }
+
+            if (input.value.length !== selectionStart) {
+                if (e.data && /\D/g.test(e.data)) {
+                    input.value = inputNumbersValue;
+                }
+                return;
+            }
+
+            if (["7", "8", "9"].indexOf(inputNumbersValue[0]) > -1) {
+                if (inputNumbersValue[0] == "9") inputNumbersValue = "7" + inputNumbersValue;
+                
+                let firstSymbols = (inputNumbersValue[0] == "8") ? "+7" : "+7";
+                formattedInputValue = input.value = firstSymbols + " ";
+                
+                if (inputNumbersValue.length > 1) {
+                    formattedInputValue += "(" + inputNumbersValue.substring(1, 4);
+                }
+                if (inputNumbersValue.length >= 5) {
+                    formattedInputValue += ") " + inputNumbersValue.substring(4, 7);
+                }
+                if (inputNumbersValue.length >= 8) {
+                    formattedInputValue += " " + inputNumbersValue.substring(7, 9);
+                }
+                if (inputNumbersValue.length >= 10) {
+                    formattedInputValue += "-" + inputNumbersValue.substring(9, 11);
+                }
+            } else {
+                formattedInputValue = "+7 " + inputNumbersValue.substring(0, 15);
+            }
+            
+            input.value = formattedInputValue;
+        };
+
+        const onPhoneKeyDown = function (e) {
+            let currentValue = e.target.value.replace(/\D/g, '');
+            if (e.keyCode == 8 && currentValue.length <= 1) {
+                e.target.value = "";
+            }
+        };
+
+        phoneInput.addEventListener('keydown', onPhoneKeyDown);
+        phoneInput.addEventListener('input', onPhoneInput, false);
+        phoneInput.addEventListener('paste', function(e) {
+            setTimeout(onPhoneInput, 0, e); 
+        });
+
+
+        // === 3. ВАЛИДАЦИЯ ФИО И ОТПРАВКА ФОРМЫ ===
+        const form = document.querySelector('.wedding-form');
+        const nameInput = document.getElementById('name');
+        const nameError = document.getElementById('name-error');
+        
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault(); 
+                
+                // --- ВАЛИДАЦИЯ ФИО ---
+                const nameVal = nameInput.value.trim();
+                const nameRegex = /^[а-яА-ЯёЁ\s-]+$/;
+                const spacesCount = (nameVal.match(/\s/g) || []).length;
+
+                if (!nameRegex.test(nameVal) || spacesCount < 2) {
+                    nameError.style.display = 'block';
+                    nameInput.style.borderColor = 'red';
+                    nameInput.scrollIntoView({behavior: 'smooth', block: 'center'});
+                    return; 
+                } else {
+                    nameError.style.display = 'none';
+                    nameInput.style.borderColor = '#e0e0e0';
+                }
+                // -----------------------
+
+                const btn = form.querySelector('button[type="submit"]');
+                const originalText = btn.innerText;
+                
+                btn.innerText = "Отправка...";
+                btn.disabled = true;
+
+                const formData = {
+                    name: nameVal,
+                    phone: phoneInput.value,
+                    attendance: document.getElementById('attendance').value,
+                    comment: document.getElementById('comment').value
+                };
+
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbyzmnUYT0kq1N1LozdsNac0v_9aqljOGj7kZeNYZ5W0u0OJ_BwI_gYYW4UebtsCI4K4/exec';
+
+                fetch(scriptURL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(() => {
+                    alert("Спасибо! Ваш ответ успешно сохранен.");
+                    form.reset(); // Очищаем поля
+                    
+                    // ВОЗВРАЩАЕМ КНОПКУ В ИСХОДНОЕ СОСТОЯНИЕ
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert("Произошла ошибка при отправке. Пожалуйста, попробуйте позже или напишите нам напрямую.");
+                    
+                    // ВОЗВРАЩАЕМ КНОПКУ ДАЖЕ ПРИ ОШИБКЕ
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                });
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
